@@ -28,10 +28,8 @@ def show_graph(g):
     gr = nx.Graph()
     gr.add_nodes_from(g.get_nodes())
     gr.add_edges_from(g.get_edges())
-
     nodes = ['a', 1, 'c', 'b', 'e', 'd', 2]
     edges = [("a", "c"), ("c", "d"), ("a", 1), (1, "d"), ("a", 2)]
-
     nx.draw(gr, node_color="red", with_labels=True)
     plt.show()
 

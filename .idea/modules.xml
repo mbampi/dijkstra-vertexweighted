@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CaminhosMinimos.iml" filepath="$PROJECT_DIR$/.idea/CaminhosMinimos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/dijkstra-vertexweighted.iml" filepath="$PROJECT_DIR$/.idea/dijkstra-vertexweighted.iml" />
     </modules>
   </component>
 </project>
