@@ -22,6 +22,14 @@ vertices = []
 for i in range(n):
     vertices.append(pesos_vertices[i])
 
+adj_list = adjmatrix_to_adjlist(matriz)
+print("ai")
+print(adj_list[0])
+print(adj_list[1])
+print(adj_list[2])
+print(adj_list[3])
+print(adj_list[4])
+
 '''
 g = Graph()
 g.add_node('A')

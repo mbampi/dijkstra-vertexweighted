@@ -24,6 +24,17 @@ class Graph:
         return self.edges
 
 
+def adjmatrix_to_adjlist(matrix):
+    n = len(matrix)
+    adj_list = defaultdict(list)
+    for i in range(0, n):
+        for j in range(0, n):
+            weight = matrix[i][j]
+            if weight != -1:
+                adj_list[i].append({j: weight})
+    return adj_list
+
+
 def show_graph(g):
     gr = nx.Graph()
     gr.add_nodes_from(g.get_nodes())
@@ -49,9 +60,10 @@ def dijkstra(graph, initial):
                 elif visited[node] < visited[min_node]:
                     min_node = node
 
+        # min_node -> vertice com menor distancia da fonte
         if min_node is None:
-            break
-        nodes.remove(min_node)
+            break  # se min_node ta vazio eh porque acabou
+        nodes.remove(min_node)  # remove da lista dos vertices a serem visitados
         current_weight = visited[min_node]
 
         for edge in graph.edges[min_node]:
@@ -59,4 +71,5 @@ def dijkstra(graph, initial):
             if edge not in visited or weight < visited[edge]:
                 visited[edge] = weight
                 path[edge].append(min_node)
-    return path
+    return path, visited
+
