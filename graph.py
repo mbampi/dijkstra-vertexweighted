@@ -24,17 +24,6 @@ class Graph:
         return self.edges
 
 
-def adjmatrix_to_adjlist(matrix):
-    n = len(matrix)
-    adj_list = defaultdict(list)
-    for i in range(0, n):
-        for j in range(0, n):
-            weight = matrix[i][j]
-            if weight != -1:
-                adj_list[i].append({j: weight})
-    return adj_list
-
-
 def show_graph(g):
     gr = nx.Graph()
     gr.add_nodes_from(g.get_nodes())
