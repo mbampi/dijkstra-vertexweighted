@@ -1,3 +1,4 @@
+from collections import OrderedDict
 
 class Graph(object):
 
@@ -7,7 +8,7 @@ class Graph(object):
             an empty dictionary will be used
         """
         if graph_dict == None:
-            graph_dict = {}
+            graph_dict = OrderedDict
         self.__graph_dict = graph_dict
 
     
