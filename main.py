@@ -1,37 +1,25 @@
 from graph import *
 
 
-def input_vertices():
-    v = []
-    vertices_weights = input().split(" ")
-    vertices_weights = list(map(int, vertices_weights))
-    for i in range(n):
-        v.append(vertices_weights[i])
-    return v
+def create_graph(n):
+    v_weights = list(map(int, input().split(" ")))
+    if(len(weights) != n):
+        raise KeyError('tamanho incompativel')
+    for i in range(0,n):
+        
 
-
-def input_adj(num_vertices):
-    adj = defaultdict(list)
-    for e in range(num_vertices):
-        edge_weights = input().split(" ")
-        edge_weights = list(map(int, edge_weights))
-        for i, w in enumerate(edge_weights):
-            if w != -1:
-                adj[e].append({i: w})
-    return adj
+ 
 
 
 # -------------------------------------------------------------------------------------------------------------------- #
+if __name__ == '__main__':
+    print("Problema dos Caminhos Mínimos de Fonte única com Pesos nos Vértices e nas Arestas")
 
+    n = int(input())
+    target_vertices = list(map(int, input().split(" ")))
+    create_graph(n)
 
-print("Problema dos Caminhos Mínimos de Fonte única com Pesos nos Vértices e nas Arestas")
-
-n = int(input())
-target_vertices = list(map(int, input().split(" ")))
-vertices = input_vertices()
-adj_list = input_adj(n)
-
-print("vertice (weight) -> [neighbor: weight]")
-for v, w in enumerate(vertices):
-    print(str(v) + '(' + str(w) + ')' + " -> " + str(adj_list[v]))
-
+    print("vertice (weight) -> [neighbor: weight]")
+    #for v, w in enumerate(vertices):
+     #   print(str(v) + '(' + str(w) + ')' + " -> " + str(adj_list[v]))
+    print(vertices)
