@@ -24,8 +24,6 @@ class Graph(object):
             self.__graph_dict[vertex1].append((vertex2,weight))
         else:
             self.__graph_dict[vertex1] = (vertex2,weight)
-    
-
 
     def get_vertices(self):
         """ returns the vertices of a graph """
@@ -34,17 +32,10 @@ class Graph(object):
     def keys_values(self):
         return self.__graph_dict.keys(),self.__graph_dict.values()
 
-        
-         
-
-
-
     def __str__(self):
-        res = "vertices: "
-        for k in self.__graph_dict:
-            res += str(k) + " "
-        res += "\nedges: "
-        for edge in self.__generate_edges():
-            res += str(edge) + " "
-        return res
-
+        keys, values = self.keys_values()
+        values = list(values)
+        s = ""
+        for i, v in enumerate(values):
+            s += "value " + str(i) + " = " + str(v) + "\n"
+        return s
