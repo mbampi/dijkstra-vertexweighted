@@ -17,7 +17,7 @@ def create_vertices(graph, weights, n):
 
 
 def edge2graph(graph, n):
-    vertices = graph.get_vertices()
+    vertices = graph.get_vertices_raw()
     for vertex in vertices:
         edge_weight = get_line_input()
         check_size(edge_weight, n)
@@ -61,3 +61,6 @@ if __name__ == '__main__':
     graph = input2graph(n)
     vertices = graph.get_vertices()
     print(graph.__str__())
+    print("\nvertices= ")
+    print(graph.get_vertices())
+    print(dijkstra(graph, 0))
