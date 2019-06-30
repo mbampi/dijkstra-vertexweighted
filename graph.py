@@ -1,6 +1,4 @@
 from collections import defaultdict
-import matplotlib.pyplot as plt
-import networkx as nx
 
 
 class Graph(object):
@@ -56,6 +54,12 @@ class Graph(object):
                 break
         return dis
 
+    def get_source_weight(self):
+        keys = self.get_vertices_raw()
+        keys = list(keys)
+        w = keys[0][1]
+        return w
+
     def __str__(self):
         keys, values = self.keys_values()
         values = list(values)
@@ -92,13 +96,3 @@ def dijkstra(graph, initial=0):
                 path[edge].append(min_node)
 
     return path, visited
-
-
-def show_graph(g):
-    gr = nx.Graph()
-    gr.add_nodes_from(g.get_nodes())
-    gr.add_edges_from(g.get_edges())
-    nodes = ['a', 1, 'c', 'b', 'e', 'd', 2]
-    edges = [("a", "c"), ("c", "d"), ("a", 1), (1, "d"), ("a", 2)]
-    nx.draw(gr, node_color="red", with_labels=True)
-    plt.show()

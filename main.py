@@ -1,4 +1,4 @@
-from graph_v2 import *
+from graph import *
 
 
 def get_line_input():
@@ -38,10 +38,11 @@ def input2graph(n):
     return graph
 
 
-def generate_output(result, target_vertices):
+def generate_output(result, target_vertices, w):
     output = ""
+
     for tv in target_vertices:
-        output += str(res[tv - 1]) + " "
+        output += str(result[tv - 1] + w) + " "
     return output
 
 
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     graph = input2graph(n)
     # print(graph)
     (path, res) = dijkstra(graph)
-    out = generate_output(res, target_vertices)
+    w = graph.get_source_weight()
+    out = generate_output(res, target_vertices, w)
     print(out)
 
