@@ -35,3 +35,33 @@ print("vertice (weight) -> [neighbor: weight]")
 for v, w in enumerate(vertices):
     print(str(v) + '(' + str(w) + ')' + " -> " + str(adj_list[v]))
 
+
+class Graph2:
+
+    def __init__(self):
+        self.vertices = []
+        self.edges = defaultdict(list)
+
+    def add_vertex(self, v, w):
+        self.vertices[v] = w
+
+    def add_vertices(self, v_list):
+        self.vertices = v_list
+
+    def add_edge(self, v1, v2, w):
+        self.edges[v1].append({v2: w})
+        self.edges[v2].append({v1: w})
+
+    def add_edges(self, v, e_list):
+        self.edges[v] = e_list
+
+    
+    def get_vertices(self):
+        return self.vertices
+
+    def get_adjacent_of(self, v):
+        return self.edges[v].keys()
+
+    def __str__(self):
+        for v, w in enumerate(self.vertices):
+            print(str(v) + '(' + str(w) + ')' + " -> " + str(self.edges[v]))
