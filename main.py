@@ -26,21 +26,6 @@ def edge2graph(graph, n):
             if weight != -1:
                 graph.add_edge([vertex, vertices[pos]], weight)
             pos = pos + 1
-    '''
-    keys, values = graph.keys_values()
-    print(keys)
-    print('\n\n')
-    values = list(values)
-    print(values)
-    print("value[0] = " + str(values[0]))
-    print('\n')
-    print("value[1] = " + str(values[1]))
-    print('\n')
-    print("value[2] = " + str(values[2]))
-    print('\n')
-    print("value[3] = " + str(values[3]))
-    print('\n')
-    print("value[4] = " + str(values[4]))'''
 
 
 def input2graph(n):
@@ -53,14 +38,21 @@ def input2graph(n):
     return graph
 
 
+def generate_output(result, target_vertices):
+    output = ""
+    for tv in target_vertices:
+        output += str(res[tv - 1]) + " "
+    return output
+
+
 # -------------------------------------------------------------------------------------------------------------------- #
 if __name__ == '__main__':
     print("Problema dos Caminhos Mínimos de Fonte única com Pesos nos Vértices e nas Arestas")
     n = int(input())
     target_vertices = get_line_input()
     graph = input2graph(n)
-    vertices = graph.get_vertices()
-    print(graph.__str__())
-    print("\nvertices= ")
-    print(graph.get_vertices())
-    print(dijkstra(graph, 0))
+    # print(graph)
+    (path, res) = dijkstra(graph)
+    out = generate_output(res, target_vertices)
+    print(out)
+

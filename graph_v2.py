@@ -1,32 +1,4 @@
-from collections import OrderedDict, defaultdict
-
-
-def dijkstra(graph, initial):
-    visited = {initial: 0}
-    path = defaultdict(list)
-
-    nodes = set(graph.get_vertices())
-
-    while nodes:
-        min_node = None
-        for node in nodes:
-            if node in visited:
-                if min_node is None:
-                    min_node = node
-                elif visited[node] < visited[min_node]:
-                    min_node = node
-
-        if min_node is None:
-            break  # se min_node ta vazio eh porque acabou
-        nodes.remove(min_node)  # remove da lista dos vertices a serem visitados
-        current_weight = visited[min_node]
-
-        for edge in graph.get_edges(min_node):
-            weight = current_weight + graph.distance(min_node, edge)
-            if edge not in visited or weight < visited[edge]:
-                visited[edge] = weight
-                path[edge].append(min_node)
-    return path, visited
+from collections import defaultdict
 
 
 class Graph(object):
@@ -36,7 +8,7 @@ class Graph(object):
             If no dictionary or None is given, 
             an empty dictionary will be used
         """
-        if graph_dict == None:
+        if graph_dict is None:
             graph_dict = {}
         self.__graph_dict = graph_dict
 
@@ -45,7 +17,7 @@ class Graph(object):
             self.__graph_dict[(vertex, weight)] = []
 
     def add_edge(self, edge, weight):
-        "edge is a list [(index1,weight1),(index2,weight2)"
+        """ edge is a list [(index1,weight1),(index2,weight2)"""
         vertex1, vertex2 = edge[0], edge[1]
         if vertex1 in self.__graph_dict:
             self.__graph_dict[vertex1].append((vertex2, weight))
@@ -75,6 +47,7 @@ class Graph(object):
     def distance(self, vi, vf):
         _, values = self.keys_values()
         values = list(values)
+        dis = None
         for e in values[vi]:
             if e[0][0] == vf:
                 dis = e[1] + e[0][1]
@@ -88,3 +61,32 @@ class Graph(object):
         for i, v in enumerate(values):
             s += "value " + str(i) + " = " + str(v) + "\n"
         return s
+
+
+def dijkstra(graph, initial=0):
+    visited = {initial: 0}
+    path = defaultdict(list)
+
+    nodes = set(graph.get_vertices())
+
+    while nodes:
+        min_node = None
+        for node in nodes:
+            if node in visited:
+                if min_node is None:
+                    min_node = node
+                elif visited[node] < visited[min_node]:
+                    min_node = node
+
+        if min_node is None:
+            break
+        nodes.remove(min_node)
+        current_weight = visited[min_node]
+
+        for edge in graph.get_edges(min_node):
+            weight = current_weight + graph.distance(min_node, edge)
+            if edge not in visited or weight < visited[edge]:
+                visited[edge] = weight
+                path[edge].append(min_node)
+
+    return path, visited
