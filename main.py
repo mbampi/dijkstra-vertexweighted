@@ -1,19 +1,21 @@
 from graph import *
 
 
+# Python 3.7
+
 def get_line_input():
     # return a list with input values
     return list(map(int, input().split(" ")))
 
 
 def check_size(l, n):
-    #raise key error if input size is incompatible
+    # raise key error if input size is incompatible
     if len(l) != n:
         raise KeyError('tamanho incompativel')
 
 
 def create_vertices(graph, weights, n):
-    #create n vertices using a list of indexed weights
+    # create n vertices using a list of indexed weights
     for i in range(0, n):
         graph.add_vertex(i, weights[i])
 
@@ -31,7 +33,7 @@ def edge2graph(graph, n):
 
 
 def input2graph(n):
-    #get the cli input
+    # get the cli input
     graph = Graph()
     v_weights = get_line_input()
     check_size(v_weights, n)
@@ -49,7 +51,8 @@ def generate_output(result, target_vertices, w):
     return output
 
 
-# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- #
+# ------------------------------------------------------------------------------------------------------------------- #
+# Python 3.7
 
 if __name__ == '__main__':
     print("Problema dos Caminhos Minimos de Fonte unica com Pesos nos Vertices e nas Arestas")
@@ -57,8 +60,7 @@ if __name__ == '__main__':
     target_vertices = get_line_input()
     graph = input2graph(n)
     # print(graph)
-    (path, res) = dijkstra(graph)
+    res = dijkstra(graph)
     w = graph.get_source_weight()
     out = generate_output(res, target_vertices, w)
     print(out)
-

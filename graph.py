@@ -1,4 +1,4 @@
-from collections import defaultdict
+# Python 3.7
 
 
 class Graph(object):
@@ -71,28 +71,25 @@ class Graph(object):
 
 def dijkstra(graph, initial=0):
     visited = {initial: 0}
-    path = defaultdict(list)
+    vertices = set(graph.get_vertices())
 
-    nodes = set(graph.get_vertices())
+    while vertices:
+        min_vertex = None
+        for vertex in vertices:
+            if vertex in visited:
+                if min_vertex is None:
+                    min_vertex = vertex
+                elif visited[vertex] < visited[min_vertex]:
+                    min_vertex = vertex
 
-    while nodes:
-        min_node = None
-        for node in nodes:
-            if node in visited:
-                if min_node is None:
-                    min_node = node
-                elif visited[node] < visited[min_node]:
-                    min_node = node
-
-        if min_node is None:
+        if min_vertex is None:
             break
-        nodes.remove(min_node)
-        current_weight = visited[min_node]
+        vertices.remove(min_vertex)
+        current_weight = visited[min_vertex]
 
-        for edge in graph.get_edges(min_node):
-            weight = current_weight + graph.distance(min_node, edge)
+        for edge in graph.get_edges(min_vertex):
+            weight = current_weight + graph.distance(min_vertex, edge)
             if edge not in visited or weight < visited[edge]:
                 visited[edge] = weight
-                path[edge].append(min_node)
 
-    return path, visited
+    return visited
